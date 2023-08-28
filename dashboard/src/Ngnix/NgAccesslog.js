@@ -15,9 +15,9 @@ const logs = [
 ]
 
 const NgAccesslog = () => {
-    const timestampRegex = /\[\d{2}\/[A-Za-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2}/;
-    const statusCodeRegex = /[-+]\d{4}/;
-    const numberRegex = /\b\d+\b|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/;
+    const timestamp = /\[\d{2}\/[A-Za-z]{3}\/\d{4}:\d{2}:\d{2}:\d{2}/;
+    const statusCode = /[-+]\d{4}/;
+    const number = /\b\d+\b|\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/;
   
     const formatLog = (log) => {
       const parts = log.split(' ');
@@ -25,11 +25,11 @@ const NgAccesslog = () => {
       return (
         <div className="log-entry">
           {parts.map((part, index) => {
-            if (timestampRegex.test(part)) {
+            if (timestamp.test(part)) {
               return <span key={index} style={{ color: 'blue' }}>{part}</span>;
-            } else if (statusCodeRegex.test(part)) {
+            } else if (statusCode.test(part)) {
               return <span key={index} style={{ color: 'green' }}>{part}</span>;
-            } else if (numberRegex.test(part)) {
+            } else if (number.test(part)) {
               return <span key={index} style={{ color: 'red' }}>{part}</span>;
             }
             return <span key={index}>{part}</span>;
